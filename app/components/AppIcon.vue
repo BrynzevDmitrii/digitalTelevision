@@ -25,6 +25,8 @@ const sizePx = computed(() => (typeof props.size === 'number' ? `${props.size}px
 <style lang="less" scoped>
 .icon {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   width: var(--icon-size);
   height: var(--icon-size);

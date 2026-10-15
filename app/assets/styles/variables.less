@@ -1,3 +1,5 @@
+@import './breakpoints.less';
+
 :root {
   --color-white: rgba(255, 255, 255, 1); // фон хедера и карточки
   --color-black: rgba(20, 20, 42, 1); // заголовки
@@ -48,6 +50,20 @@
   --space-4: 24px;
   --space-5: 32px;
   --space-6: 48px;
-  --container-width: 1296px;
+  --container-width: 1224px;
+  --container-gutter: 36px; // боковые поля контейнера
+  --radius-button: 12px;
+  --header-height: 84px;
+
+  --button-size: 18px;
+  --button-weight: 500;
+  --button-line-height: 100%;
   --mobile-container-width: 320px;
 }
+// Мобильная версия: переопределяем только то, что отличается
+.mobile({
+  :root {
+    --container-gutter: 16px;
+    --header-height: 64px;
+  }
+});
