@@ -3,7 +3,12 @@ export default defineEventHandler(async (event) => {
   const url = materialsUrl(event)
 
   try {
-    return await $fetch<Material[]>(url)
+    const materials = await $fetch<Material[]>(url)
+    // Очищаем HTML на сервере, в браузер приходит уже безопасный
+    return materials.map((material) => ({
+      ...material,
+      description_html: cleanHtml(material.description_html ?? ''),
+    }))
   } catch {
     throw createError({ statusCode: 502, statusMessage: 'Materials API is unavailable' })
   }
