@@ -21,7 +21,7 @@ defineProps<{ material: Material }>()
 
 .card {
   display: flex;
-  flex: 1; // занимает всю высоту и ширину ячейки
+  flex: 1;
   flex-direction: column;
   gap: var(--card-gap);
   padding: var(--card-padding-y) var(--card-padding-x);
@@ -56,8 +56,6 @@ defineProps<{ material: Material }>()
   &__text {
     .text-card();
     color: var(--color-gray);
-
-    // описание обрезается до 4 строк с многоточием
     display: -webkit-box;
     overflow: hidden;
     -webkit-line-clamp: 4;

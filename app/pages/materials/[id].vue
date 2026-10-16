@@ -33,7 +33,7 @@ const hasBody = material.description_html.replace(/<[^>]*>/g, '').trim().length 
       <div class="detail__card">
         <div class="detail__head">
           <div class="detail__date">
-            <AppIcon name="calendar" :size="24" fit />
+            <AppIcon name="calendar" size="var(--detail-icon-size)" fit />
             <span>{{ formatMaterialDate(material.datetime) }}</span>
           </div>
 
@@ -58,6 +58,10 @@ const hasBody = material.description_html.replace(/<[^>]*>/g, '').trim().length 
   padding-top: 36px;
   padding-bottom: var(--space-6);
 
+  .mobile({
+    padding-block: var(--space-5);
+  });
+
   &__content {
     max-width: var(--content-width);
     margin-inline: auto;
@@ -72,10 +76,11 @@ const hasBody = material.description_html.replace(/<[^>]*>/g, '').trim().length 
     background: var(--color-white);
     border-radius: var(--radius-large);
 
-    // Размеры мобильной версии в макете пока не уточнены (временные значения)
+    // Мобильная версия: карточка на всю ширину экрана (выходит за поля контейнера)
     .mobile({
-      gap: var(--space-4);
       padding: var(--space-4) var(--space-3);
+      margin-top: var(--space-5);
+      margin-inline: calc(var(--container-gutter) * -1);
       border-radius: var(--radius);
     });
   }
@@ -92,6 +97,11 @@ const hasBody = material.description_html.replace(/<[^>]*>/g, '').trim().length 
     gap: var(--space-2);
     align-items: center;
     color: var(--color-light-gray);
+
+    // на мобильном дата набрана стилем описания (Futura Medium 18px)
+    .mobile({
+      .text-description();
+    });
   }
 
   &__title {
