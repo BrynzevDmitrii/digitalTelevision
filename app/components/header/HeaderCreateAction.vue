@@ -1,6 +1,6 @@
 <template>
   <BaseButton to="/materials/create">
-    Создать материал
+    Создать историю
     <template #icon><AppIcon name="add" /></template>
   </BaseButton>
 </template>
