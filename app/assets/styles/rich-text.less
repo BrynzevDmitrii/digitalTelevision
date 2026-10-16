@@ -1,0 +1,32 @@
+// Оформление контента редактора и description_html на детальной странице.
+// Размеры h2 и h3 в макете не заданы, взяты по аналогии.
+@import './typography.less';
+
+.rich-text {
+  .text-body();
+  color: var(--color-black);
+
+  > * + * {
+    margin-top: var(--space-3);
+  }
+
+  h1 {
+    .text-h1();
+  }
+
+  h2 {
+    .text-h1();
+    font-size: 28px;
+  }
+
+  h3 {
+    .text-h1();
+    font-size: 22px;
+  }
+
+  blockquote {
+    padding-left: var(--space-4);
+    color: var(--color-gray);
+    border-left: 4px solid var(--color-bright-blue);
+  }
+}
