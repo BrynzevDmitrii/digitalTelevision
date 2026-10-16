@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const { title, short_description, datetime, description_html, description_json } = body
   try {
-    return await $fetch<Material>(url, {
+    return await $fetch<SaveMaterialResponse>(url, {
       method: 'POST',
       body: { title, short_description, datetime, description_html, description_json },
     })

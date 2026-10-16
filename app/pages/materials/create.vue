@@ -2,6 +2,7 @@
 definePageMeta({ headerAction: 'save' })
 
 const saving = useState<boolean>('materialSaving', () => false)
+const { load: refreshMaterials } = useMaterials()
 
 const form = reactive({
   title: '',
@@ -40,10 +41,18 @@ async function onSubmit() {
   saving.value = true
   submitError.value = ''
   try {
-    const material = await $fetch<Material>('/api/materials', { method: 'POST', body: payload })
-    // TODO: переход на детальную страницу созданного материала
-    console.log('saved:', material)
-    await navigateTo('/')
+    const response = await $fetch<SaveMaterialResponse>('/api/materials/save', {
+      method: 'POST',
+      body: payload,
+    })
+    if (!response.success || response.id === undefined) {
+      throw new Error('Сервер не сохранил материал')
+    }
+
+    // Сервер вернул только id, поэтому обновляем список и открываем материал уже с данными сервера.
+    // Если список не обновился, детальная страница догрузит его сама.
+    await refreshMaterials(true).catch(() => {})
+    await navigateTo(`/materials/${response.id}`)
   } catch {
     submitError.value = 'Не удалось сохранить материал. Попробуйте ещё раз.'
   } finally {
