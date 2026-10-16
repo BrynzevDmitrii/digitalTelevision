@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/styles/main.less'],
+  // Только для сервера (в клиентский бандл не попадает).
+  runtimeConfig: {
+    materialsApiBase: 'https://naukatv.ru/api/test/materials',
+    materialsAlias: ''
+  },
   app: {
     head: {
       htmlAttrs: { lang: 'ru' },

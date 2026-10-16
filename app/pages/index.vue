@@ -1,3 +1,9 @@
+<script setup lang="ts">
+const { data: materials, error } = await useFetch<Material[]>('/api/materials')
+
+console.log('materials:', materials.value, 'error:', error.value)
+</script>
+
 <template>
   <section class="materials container">
     <h1 class="materials__title">Материалы</h1>
