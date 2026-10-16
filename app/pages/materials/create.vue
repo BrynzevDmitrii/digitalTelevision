@@ -68,7 +68,7 @@ onBeforeUnmount(() => {
 <template>
   <section class="create container">
     <div class="create__content">
-      <BackLink to="/" />
+      <BackLink to="/" class="create__back" />
       <h1 class="create__title">Создание материала</h1>
 
       <form id="material-form" class="create__card" novalidate @submit.prevent="onSubmit">
@@ -117,32 +117,53 @@ onBeforeUnmount(() => {
 @import '~/assets/styles/typography.less';
 @import '~/assets/styles/breakpoints.less';
 
+// Размеры оценены по макету «на глаз»
 .create {
-  padding-block: var(--space-6);
+  padding-top: 36px;
+  padding-bottom: var(--space-6);
+
+  .mobile({
+    padding-block: var(--space-5);
+  });
 
   &__content {
     max-width: var(--content-width);
     margin-inline: auto;
   }
 
+  // в мобильном макете кнопки «Назад» нет
+  &__back {
+    .mobile({
+      display: none;
+    });
+  }
+
   &__title {
     .text-h1();
-    margin-top: var(--space-4);
+    margin-top: var(--space-5);
+
+    .mobile({
+      margin-top: 0;
+    });
   }
 
   &__card {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    padding: var(--space-6);
-    margin-top: var(--space-5);
+    min-height: 598px;
+    padding: var(--detail-padding);
+    margin-top: var(--space-6);
     background: var(--color-white);
-    border-radius: var(--radius);
+    border-radius: var(--radius-large);
 
     .mobile({
+      min-height: 535px;
       padding: var(--space-4) var(--space-3);
+      margin-top: var(--space-5);
+      border-radius: var(--radius);
     });
-}
+  }
 }
 
 .field {
